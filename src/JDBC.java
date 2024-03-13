@@ -9,18 +9,22 @@ public class JDBC {
 
 	public static void main(String[] args) {
 		
-		String url = "jdbc:mysql://localhost:3306/employees_database";
+		String url = "jdbc:mysql://127.0.0.1:7009/employees_database";
 		try {
-			Connection conn = DriverManager.getConnection(url, "root", "");
+			Connection conn = DriverManager.getConnection(url, "root", "password");
 			
 			Statement statement = conn.createStatement();
 			
 			ResultSet result = statement.executeQuery("select * from employees_tbl");
 			
+			int value = 0;
+			
 			while(result.next()) {
-				result.getInt("salary");
+				value = Integer.parseInt(result.getString("salary"));
 			}
 			
+			System.out.print(value);
+
 			
 					
 		} catch (SQLException e) {
